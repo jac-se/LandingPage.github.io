@@ -55,7 +55,7 @@ const translations = {
 
         // Footer
         'footer.copyright': '© 2025 JACC Software. Todos los derechos reservados.',
-        'footer.desarrollado': 'Desarrollado por Jorge Cisneros',
+        'footer.desarrollado': 'Desarrollado por Jesús Arturo Cisneros Cantero',
         'footer.terminos': 'Términos y condiciones',
         'footer.privacidad': 'Aviso de privacidad',
         'footer.desarrollador': 'Acerca del desarrollador',
@@ -117,7 +117,7 @@ const translations = {
 
         // Footer
         'footer.copyright': '© 2025 JACC Software. All rights reserved.',
-        'footer.desarrollado': 'Developed by Jorge Cisneros',
+        'footer.desarrollado': 'Developed by Jesús Arturo Cisneros Cantero ',
         'footer.terminos': 'Terms and conditions',
         'footer.privacidad': 'Privacy policy',
         'footer.desarrollador': 'About the developer',
