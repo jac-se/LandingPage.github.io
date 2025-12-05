@@ -153,8 +153,8 @@ const testimoniosPredeterminados = [
         texto: 'Excelente relación calidad-precio. El software funciona perfectamente y el soporte es muy profesional.'
     },
     {
-        nombre: 'Jesús Arturo Cisneros Cantero',
-        puesto: 'Desarrollador',
+        nombre: 'Juan Cantero',
+        puesto: 'Diseñador',
         texto: 'Recomiendo ampliamente JACC Software. Son herramientas prácticas que realmente resuelven problemas del día a día.'
     }
 ];
