@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Meta Tags SEO -->
+    <meta name="description"
+        content="JACC Software - Desarrollo de software profesional en Java, Visual Basic .NET, PHP CodeIgniter 4. Aplicaciones web, escritorio, embebidas, microservicios, APIs con IA. Soporte técnico y asesorías en programación.">
+    <meta name="keywords"
+        content="desarrollo software, Java, Visual Basic .NET, PHP, CodeIgniter 4, aplicaciones web, microservicios, monolitos, APIs IA, bash, aplicaciones embebidas, soporte técnico, asesorías programación, JACC Software, Jorge Cisneros">
+    <meta name="author" content="Jorge Cisneros">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Spanish">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jacc-software.com/">
+    <meta property="og:title" content="JACC Software - Desarrollo de Software Profesional">
+    <meta property="og:description"
+        content="Desarrollo de aplicaciones en Java, VB.NET, PHP CodeIgniter 4. Microservicios, APIs con IA, soporte técnico y asesorías.">
+    <meta property="og:image" content="https://jacc-software.com/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://jacc-software.com/">
+    <meta property="twitter:title" content="JACC Software - Desarrollo de Software Profesional">
+    <meta property="twitter:description"
+        content="Desarrollo de aplicaciones en Java, VB.NET, PHP CodeIgniter 4. Microservicios, APIs con IA, soporte técnico y asesorías.">
+    <meta property="twitter:image" content="https://jacc-software.com/twitter-image.jpg">
+
+    <title>JACC Software - Desarrollo de Software Profesional | Java, VB.NET, PHP, Microservicios</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header fijo con navegación -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">JACC Software</div>
+                <div class="header-right">
+                    <nav class="nav">
+                        <ul class="nav-list">
+                            <li><a href="#inicio" class="nav-link" data-i18n="nav.inicio">Inicio</a></li>
+                            <li><a href="#productos" class="nav-link" data-i18n="nav.productos">Software como
+                                    Servicio</a></li>
+                            <li><a href="#servicios" class="nav-link" data-i18n="nav.servicios">Servicios</a></li>
+                            <li><a href="#testimonios" class="nav-link" data-i18n="nav.testimonios">Testimonios</a></li>
+                        </ul>
+                    </nav>
+                    <div class="language-selector">
+                        <button id="lang-es" class="lang-btn active">ES</button>
+                        <button id="lang-en" class="lang-btn">EN</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section id="inicio" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title" data-i18n="hero.title">Software como Servicio y Desarrollo a la Medida</h1>
+                    <p class="hero-subtitle" data-i18n="hero.subtitle">Soluciones profesionales en Java, Visual Basic
+                        .NET, PHP CodeIgniter 4. Desde aplicaciones web y escritorio hasta microservicios con IA.
+                        Descubre nuestro catálogo de herramientas listas para usar.</p>
+                    <a href="#productos" class="btn btn-primary btn-large" data-i18n="hero.cta">Ver productos</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Productos (Catálogo) -->
+        <section id="productos" class="productos">
+            <div class="container">
+                <h2 class="section-title" data-i18n="productos.title">Software como Servicio (SaaS)</h2>
+
+                <!-- Filtros y búsqueda -->
+                <div class="productos-filtros">
+                    <div class="filtro-busqueda">
+                        <input type="text" id="busqueda-producto" class="input-busqueda"
+                            placeholder="Buscar productos..." data-i18n="productos.buscar">
+                    </div>
+
+                    <div class="filtro-categoria">
+                        <label for="filtro-categoria" class="filtro-label"
+                            data-i18n="productos.categoria">Categoría:</label>
+                        <select id="filtro-categoria" class="select-filtro">
+                            <option value="todos" data-i18n="productos.todos">Todos</option>
+                            <option value="Escritorio">Escritorio</option>
+                            <option value="Web">Web</option>
+                            <option value="Android">Android</option>
+                            <option value="Utilidad">Utilidad</option>
+                        </select>
+                    </div>
+
+                    <div class="filtro-tipo">
+                        <label for="filtro-tipo" class="filtro-label" data-i18n="productos.tipo">Tipo:</label>
+                        <select id="filtro-tipo" class="select-filtro">
+                            <option value="todos" data-i18n="productos.todos">Todos</option>
+                            <option value="Gratis" data-i18n="productos.gratis">Gratis</option>
+                            <option value="Pro" data-i18n="productos.pro">Pro</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Grid de productos (generado dinámicamente) -->
+                <div id="productos-grid" class="productos-grid">
+                    <!-- Las tarjetas se generarán aquí con JavaScript -->
+                </div>
+
+                <!-- Mensaje cuando no hay resultados -->
+                <div id="no-resultados" class="no-resultados" style="display: none;">
+                    <p data-i18n="productos.no-resultados">No se encontraron productos que coincidan con tu búsqueda.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Servicios -->
+        <section id="servicios" class="servicios">
+            <div class="container">
+                <h2 class="section-title" data-i18n="servicios.title">Nuestros Servicios</h2>
+                <p class="servicios-intro" data-i18n="servicios.intro">Además de nuestros productos, ofrecemos servicios
+                    profesionales de desarrollo y consultoría</p>
+                <div class="servicios-grid">
+                    <div class="servicio-card">
+                        <div class="servicio-icon">💻</div>
+                        <h3 class="servicio-titulo" data-i18n="servicios.desarrollo.titulo">Desarrollo de Software
+                            Profesional</h3>
+                        <p class="servicio-descripcion" data-i18n="servicios.desarrollo.desc">Desarrollo en
+                            <strong>Java</strong>, <strong>Visual Basic .NET</strong>, <strong>PHP con CodeIgniter
+                                4</strong>. Aplicaciones de escritorio, web, embebidas y scripts Bash. Arquitecturas
+                            monolíticas o microservicios según tus necesidades.
+                        </p>
+                    </div>
+                    <div class="servicio-card">
+                        <div class="servicio-icon">🤖</div>
+                        <h3 class="servicio-titulo" data-i18n="servicios.api.titulo">APIs e Integración con IA</h3>
+                        <p class="servicio-descripcion" data-i18n="servicios.api.desc">Desarrollo de APIs RESTful y
+                            integración con servicios de Inteligencia Artificial. Automatización inteligente para tu
+                            negocio.</p>
+                    </div>
+                    <a href="electronica.html" class="servicio-card servicio-card-link">
+                        <div class="servicio-icon">🔌</div>
+                        <h3 class="servicio-titulo" data-i18n="servicios.electronica.titulo">Productos Electrónicos</h3>
+                        <p class="servicio-descripcion" data-i18n="servicios.electronica.desc">Venta de componentes y
+                            productos electrónicos de calidad.</p>
+                        <span class="servicio-link-arrow" data-i18n="servicios.electronica.cta">Ver catálogo →</span>
+                    </a>
+                    <div class="servicio-card servicio-card-contacto" data-servicio="Desarrollo a Medida">
+                        <div class="servicio-icon">⚙️</div>
+                        <h3 class="servicio-titulo" data-i18n="servicios.medida.titulo">Desarrollo a Medida</h3>
+                        <p class="servicio-descripcion" data-i18n="servicios.medida.desc">Soluciones personalizadas
+                            adaptadas a las necesidades específicas de tu proyecto.</p>
+                        <span class="servicio-link-arrow" data-i18n="servicios.medida.cta">Contactar →</span>
+                    </div>
+                    <div class="servicio-card servicio-card-contacto" data-servicio="Soporte Técnico">
+                        <div class="servicio-icon">🛠️</div>
+                        <h3 class="servicio-titulo" data-i18n="servicios.soporte.titulo">Soporte Técnico</h3>
+                        <p class="servicio-descripcion" data-i18n="servicios.soporte.desc">Formateo de equipos,
+                            instalación de software, configuración de impresoras y escáneres.</p>
+                        <span class="servicio-link-arrow" data-i18n="servicios.soporte.cta">Contactar →</span>
+                    </div>
+                    <a href="cursos.html" class="servicio-card servicio-card-link">
+                        <div class="servicio-icon">🎓</div>
+                        <h3 class="servicio-titulo" data-i18n="servicios.cursos.titulo">Cursos Online</h3>
+                        <p class="servicio-descripcion" data-i18n="servicios.cursos.desc">Accede a nuestros cursos en
+                            Udemy y YouTube para aprender a tu ritmo.</p>
+                        <span class="servicio-link-arrow" data-i18n="servicios.cursos.cta">Ver cursos →</span>
+                    </a>
+                    <div class="servicio-card servicio-card-contacto" data-servicio="Asesorías Personalizadas">
+                        <div class="servicio-icon">📚</div>
+                        <h3 class="servicio-titulo" data-i18n="servicios.asesorias.titulo">Asesorías Personalizadas</h3>
+                        <p class="servicio-descripcion" data-i18n="servicios.asesorias.desc">Asesoría en programación,
+                            matemáticas e inglés. Contáctanos para agendar.</p>
+                        <span class="servicio-link-arrow" data-i18n="servicios.asesorias.cta">Contactar →</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonios -->
+        <section id="testimonios" class="testimonios">
+            <div class="container">
+                <div class="testimonios-header">
+                    <h2 class="section-title" data-i18n="testimonios.title">Lo que dicen nuestros clientes</h2>
+                    <button class="btn btn-primary" id="btn-agregar-testimonio" data-i18n="testimonios.agregar">Agregar
+                        tu testimonio</button>
+                </div>
+                <div class="testimonios-grid">
+                    <div class="testimonio-card">
+                        <p class="testimonio-texto">
+                            "Las herramientas de JACC Software son exactamente lo que necesitaba.
+                            Fáciles de usar y muy efectivas para mi trabajo diario."
+                        </p>
+                        <div class="testimonio-autor">
+                            <strong>Roberto Sánchez</strong>
+                            <span>Contador Público</span>
+                        </div>
+                    </div>
+
+                    <div class="testimonio-card">
+                        <p class="testimonio-texto">
+                            "Excelente relación calidad-precio. El software funciona perfectamente
+                            y el soporte es muy profesional."
+                        </p>
+                        <div class="testimonio-autor">
+                            <strong>Laura Méndez</strong>
+                            <span>Administradora</span>
+                        </div>
+                    </div>
+
+                    <div class="testimonio-card">
+                        <p class="testimonio-texto">
+                            "Recomiendo ampliamente JACC Software. Son herramientas prácticas
+                            que realmente resuelven problemas del día a día."
+                        </p>
+                        <div class="testimonio-autor">
+                            <strong>Jorge Cisneros</strong>
+                            <span>Desarrollador</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p class="footer-copyright" data-i18n="footer.copyright">© 2025 JACC Software. Todos los derechos
+                        reservados.</p>
+                    <p class="footer-contact" data-i18n="footer.desarrollado">Desarrollado por Jesús Arturo Cisneros
+                        Cantero </p>
+                </div>
+                <div class="footer-links">
+                    <a href="#" class="footer-link" data-i18n="footer.terminos">Términos y condiciones</a>
+                    <a href="aviso-privacidad.html" class="footer-link" data-i18n="footer.privacidad">Aviso de
+                        privacidad</a>
+                    <a href="https://portafolio-three-lac.vercel.app/" target="_blank" class="footer-link"
+                        data-i18n="footer.desarrollador">Acerca del desarrollador</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Banner -->
+    <div id="cookie-banner">
+        <div class="cookie-content">
+            <div class="cookie-text">
+                <p>
+                    <span data-i18n="cookies.mensaje">Utilizamos cookies y Google Analytics para mejorar tu experiencia.
+                        Al continuar navegando, aceptas nuestra</span>
+                    <a href="aviso-privacidad.html" data-i18n="cookies.politica">Política de Privacidad</a>.
+                </p>
+            </div>
+            <div class="cookie-actions">
+                <button id="cookie-accept" class="cookie-btn cookie-btn-accept"
+                    data-i18n="cookies.aceptar">Aceptar</button>
+                <button id="cookie-reject" class="cookie-btn cookie-btn-reject"
+                    data-i18n="cookies.rechazar">Rechazar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de detalles del producto -->
+    <div id="modal-producto" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <div id="modal-body">
+                <!-- Contenido del modal se genera dinámicamente -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de agregar testimonio -->
+    <div id="modal-testimonio" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-testimonio-close">&times;</button>
+            <div id="modal-testimonio-body">
+                <h2 class="modal-producto-nombre">Comparte tu experiencia</h2>
+                <form id="form-testimonio" class="contacto-form">
+                    <div class="form-group">
+                        <label for="testimonio-nombre" class="form-label">Tu nombre</label>
+                        <input type="text" id="testimonio-nombre" class="form-input" placeholder="Ej: Juan Pérez"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="testimonio-puesto" class="form-label">Tu puesto o profesión</label>
+                        <input type="text" id="testimonio-puesto" class="form-input" placeholder="Ej: Diseñador Gráfico"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="testimonio-texto" class="form-label">Tu testimonio</label>
+                        <textarea id="testimonio-texto" class="form-textarea"
+                            placeholder="Cuéntanos tu experiencia con nuestros productos..." rows="5"
+                            required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar testimonio</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de registro beta -->
+    <div id="modal-beta" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-beta-close">&times;</button>
+            <div id="modal-beta-body">
+                <h2 class="modal-producto-nombre">Registro para Versión Beta</h2>
+                <p class="modal-beta-info">Regístrate para ser parte de los primeros en probar esta app cuando esté
+                    disponible.</p>
+                <form id="form-beta" class="contacto-form">
+                    <input type="hidden" id="beta-producto-id" value="">
+                    <div class="form-group">
+                        <label for="beta-nombre" class="form-label">Tu nombre</label>
+                        <input type="text" id="beta-nombre" class="form-input" placeholder="Ej: Juan Pérez" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="beta-email-google" class="form-label">Correo de Google Play</label>
+                        <input type="email" id="beta-email-google" class="form-input" placeholder="tu-cuenta@gmail.com"
+                            required>
+                        <small class="form-help">Usaremos este correo para agregarte como beta tester en Google
+                            Play</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="beta-email-personal" class="form-label">Email de contacto</label>
+                        <input type="email" id="beta-email-personal" class="form-input" placeholder="tu@email.com"
+                            required>
+                        <small class="form-help">Te notificaremos cuando la versión beta esté lista</small>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Registrarme en Beta</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de contacto -->
+    <div id="modal-contacto" class="modal">
+        <div class="modal-content modal-content-contacto">
+            <button class="modal-close" id="modal-contacto-close">&times;</button>
+            <div id="modal-contacto-body">
+                <h2 class="modal-producto-nombre" id="modal-contacto-titulo">Contáctanos</h2>
+                <p class="modal-contacto-info">Elige tu método de contacto preferido:</p>
+                <div class="contacto-opciones">
+                    <a href="#" id="btn-whatsapp" class="btn-contacto btn-whatsapp" target="_blank">
+                        <span class="contacto-icon">📱</span>
+                        <div class="contacto-texto">
+                            <strong>WhatsApp Business</strong>
+                            <span>Respuesta rápida</span>
+                        </div>
+                    </a>
+                    <a href="mailto:jesus.cisneros@outlook.com" id="btn-email" class="btn-contacto btn-email">
+                        <span class="contacto-icon">📧</span>
+                        <div class="contacto-texto">
+                            <strong>Email</strong>
+                            <span>jesus.cisneros@outlook.com</span>
+                        </div>
+                    </a>
+                    <a href="tel:+525513880510" class="btn-contacto btn-telefono">
+                        <span class="contacto-icon">☎️</span>
+                        <div class="contacto-texto">
+                            <strong>Teléfono</strong>
+                            <span>+52 55 1388 0510</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/i18n.js"></script>
+    <script src="js/analytics.js"></script>
+    <script src="main.js"></script>
+    <script>
+        // Inicializar i18n al cargar
+        document.addEventListener('DOMContentLoaded', function () {
+            window.i18n.init();
+        });
+    </script>
+</body>
+
+</html>

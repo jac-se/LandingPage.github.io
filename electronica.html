@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Catálogo de productos electrónicos - JACC Software">
+    <title>Productos Electrónicos - JACC Software</title>
+    <link rel="stylesheet" href="electronica.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">JACC Electrónica</div>
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li><a href="index.html" class="nav-link">← Volver al inicio</a></li>
+                        <li><a href="#catalogo" class="nav-link">Catálogo</a></li>
+                        <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Productos Electrónicos de Calidad</h1>
+                    <p class="hero-subtitle">Encuentra todo lo que necesitas: cargadores, audífonos, accesorios y más
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Catálogo -->
+        <section id="catalogo" class="catalogo">
+            <div class="container">
+                <h2 class="section-title">Nuestro Catálogo</h2>
+
+                <!-- Filtros -->
+                <div class="filtros">
+                    <div class="filtro-busqueda">
+                        <input type="text" id="busqueda-producto" class="input-busqueda"
+                            placeholder="Buscar productos...">
+                    </div>
+
+                    <div class="filtro-categoria">
+                        <label for="filtro-categoria" class="filtro-label">Categoría:</label>
+                        <select id="filtro-categoria" class="select-filtro">
+                            <option value="todos">Todos</option>
+                            <option value="Audio">Audio</option>
+                            <option value="Carga">Carga y Cables</option>
+                            <option value="Iluminación">Iluminación</option>
+                            <option value="Herramientas">Herramientas</option>
+                            <option value="Electrodomésticos">Electrodomésticos</option>
+                            <option value="Accesorios">Accesorios</option>
+                            <option value="Otros">Otros</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Grid de productos -->
+                <div id="productos-grid" class="productos-grid">
+                    <!-- Los productos se generarán dinámicamente -->
+                </div>
+
+                <!-- Mensaje sin resultados -->
+                <div id="no-resultados" class="no-resultados" style="display: none;">
+                    <p>No se encontraron productos que coincidan con tu búsqueda.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contacto -->
+        <section id="contacto" class="contacto">
+            <div class="container">
+                <h2 class="section-title">Información de Contacto</h2>
+                <div class="contacto-info">
+                    <div class="contacto-item">
+                        <span class="contacto-icon">📧</span>
+                        <div>
+                            <h3>Email</h3>
+                            <a href="mailto:jesus.cisneros@outlook.com">jesus.cisneros@outlook.com</a>
+                        </div>
+                    </div>
+                    <div class="contacto-item">
+                        <span class="contacto-icon">💬</span>
+                        <div>
+                            <h3>WhatsApp</h3>
+                            <p>Contáctanos para consultas y pedidos</p>
+                        </div>
+                    </div>
+                    <div class="contacto-item">
+                        <span class="contacto-icon">📍</span>
+                        <div>
+                            <h3>Entrega</h3>
+                            <p>Envíos disponibles</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-copyright">© 2025 JACC Software. Todos los derechos reservados.</p>
+                <div class="footer-links">
+                    <a href="index.html" class="footer-link">Volver al sitio principal</a>
+                    <a href="mailto:jesus.cisneros@outlook.com" class="footer-link">Contacto</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de detalles del producto -->
+    <div id="modal-producto" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <div id="modal-body">
+                <!-- Contenido generado dinámicamente -->
+            </div>
+        </div>
+    </div>
+
+    <script src="electronica.js"></script>
+</body>
+
+</html>

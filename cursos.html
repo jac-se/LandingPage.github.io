@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cursos de programación - JACC Software | Udemy y YouTube">
+    <title>Cursos de Programación - JACC Software</title>
+    <link rel="stylesheet" href="electronica.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">JACC Cursos</div>
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li><a href="index.html" class="nav-link">← Volver al inicio</a></li>
+                        <li><a href="#catalogo" class="nav-link">Catálogo</a></li>
+                        <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Aprende Programación con Nuestros Cursos</h1>
+                    <p class="hero-subtitle">Cursos gratuitos y de pago en Udemy y YouTube. Desde lo básico hasta temas
+                        avanzados.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Catálogo -->
+        <section id="catalogo" class="catalogo">
+            <div class="container">
+                <h2 class="section-title">Catálogo de Cursos</h2>
+
+                <!-- Filtros -->
+                <div class="filtros">
+                    <div class="filtro-categoria">
+                        <label for="filtro-categoria" class="filtro-label">Plataforma:</label>
+                        <select id="filtro-categoria" class="select-filtro">
+                            <option value="todos">Todas</option>
+                            <option value="Udemy">Udemy</option>
+                            <option value="YouTube">YouTube</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Grid de cursos -->
+                <div id="cursos-grid" class="productos-grid">
+                    <!-- Los cursos se generarán dinámicamente -->
+                </div>
+
+                <!-- Mensaje sin resultados -->
+                <div id="no-resultados" class="no-resultados" style="display: none;">
+                    <p>No se encontraron cursos que coincidan con tu búsqueda.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contacto -->
+        <section id="contacto" class="contacto">
+            <div class="container">
+                <h2 class="section-title">Información de Contacto</h2>
+                <div class="contacto-info">
+                    <div class="contacto-item">
+                        <span class="contacto-icon">📧</span>
+                        <div>
+                            <h3>Email</h3>
+                            <a href="mailto:jesus.cisneros@outlook.com">jesus.cisneros@outlook.com</a>
+                        </div>
+                    </div>
+                    <div class="contacto-item">
+                        <span class="contacto-icon">💬</span>
+                        <div>
+                            <h3>WhatsApp</h3>
+                            <p>Contáctanos para consultas sobre cursos</p>
+                        </div>
+                    </div>
+                    <div class="contacto-item">
+                        <span class="contacto-icon">🎓</span>
+                        <div>
+                            <h3>Aprende con nosotros</h3>
+                            <p>Cursos actualizados regularmente</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-copyright">© 2025 JACC Software. Todos los derechos reservados.</p>
+                <div class="footer-links">
+                    <a href="index.html" class="footer-link">Volver al sitio principal</a>
+                    <a href="mailto:jesus.cisneros@outlook.com" class="footer-link">Contacto</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="cursos.js"></script>
+</body>
+
+</html>
