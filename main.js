@@ -1,3 +1,5 @@
+﻿console.log('Main.js script is executing...');
+
 /**
  * Archivo: main.js
  * Propósito: JavaScript vanilla para catálogo de productos JACC Software
@@ -164,6 +166,7 @@ let productosFiltrados = [...productos];
 
 // ========== Inicialización ==========
 document.addEventListener('DOMContentLoaded', function () {
+    console.log('DOM fully loaded and parsed');
 
     // Renderizar productos inicialmente
     renderizarProductos(productos);
@@ -186,37 +189,49 @@ document.addEventListener('DOMContentLoaded', function () {
     // Configurar modal beta
     configurarModalBeta();
 
-    // Configurar modal de contacto
+    // Configurar modal contacto
     configurarModalContacto();
 
     // Configurar testimonios
     configurarTestimonios();
-
-    // Renderizar testimonios
     renderizarTestimonios();
 
+    // Configurar tema (Dark Mode)
+    configurarTema();
+
+    // Configurar menú móvil
+    configurarMenuMobile();
 });
 
-// ========== Renderizar productos ==========
+// ========== Renderizar Productos ==========
 function renderizarProductos(listaProductos) {
+    console.log('renderizarProductos called with:', listaProductos);
     const grid = document.getElementById('productos-grid');
     const noResultados = document.getElementById('no-resultados');
 
-    // Limpiar grid
-    grid.innerHTML = '';
-
-    // Verificar si hay productos
-    if (listaProductos.length === 0) {
-        noResultados.style.display = 'block';
+    if (!grid) {
+        console.error('Element #productos-grid not found!');
         return;
     }
 
-    noResultados.style.display = 'none';
+    grid.innerHTML = '';
 
-    // Crear tarjetas de productos
-    listaProductos.forEach(producto => {
-        const card = crearTarjetaProducto(producto);
-        grid.appendChild(card);
+    if (listaProductos.length === 0) {
+        if (noResultados) noResultados.style.display = 'block';
+        return;
+    }
+
+    if (noResultados) noResultados.style.display = 'none';
+
+    listaProductos.forEach((producto, index) => {
+        try {
+            const card = crearTarjetaProducto(producto);
+            if (card) {
+                grid.appendChild(card);
+            }
+        } catch (e) {
+            console.error(`Error rendering product ${producto.nombre}:`, e);
+        }
     });
 }
 
@@ -306,27 +321,34 @@ function configurarFiltros() {
     const filtroCategoria = document.getElementById('filtro-categoria');
     const filtroTipo = document.getElementById('filtro-tipo');
 
-    // Búsqueda por texto
-    busqueda.addEventListener('input', function () {
-        aplicarFiltros();
-    });
+    if (busqueda) {
+        busqueda.addEventListener('input', function () {
+            aplicarFiltros();
+        });
+    }
 
-    // Filtro por categoría
-    filtroCategoria.addEventListener('change', function () {
-        aplicarFiltros();
-    });
+    if (filtroCategoria) {
+        filtroCategoria.addEventListener('change', function () {
+            aplicarFiltros();
+        });
+    }
 
-    // Filtro por tipo
-    filtroTipo.addEventListener('change', function () {
-        aplicarFiltros();
-    });
+    if (filtroTipo) {
+        filtroTipo.addEventListener('change', function () {
+            aplicarFiltros();
+        });
+    }
 }
 
 // ========== Aplicar filtros ==========
 function aplicarFiltros() {
-    const busqueda = document.getElementById('busqueda-producto').value.toLowerCase();
-    const categoria = document.getElementById('filtro-categoria').value;
-    const tipo = document.getElementById('filtro-tipo').value;
+    const busquedaInput = document.getElementById('busqueda-producto');
+    const categoriaInput = document.getElementById('filtro-categoria');
+    const tipoInput = document.getElementById('filtro-tipo');
+
+    const busqueda = busquedaInput ? busquedaInput.value.toLowerCase() : '';
+    const categoria = categoriaInput ? categoriaInput.value : 'todos';
+    const tipo = tipoInput ? tipoInput.value : 'todos';
 
     productosFiltrados = productos.filter(producto => {
         // Filtro de búsqueda
@@ -352,6 +374,8 @@ function abrirModal(productoId) {
 
     const modal = document.getElementById('modal-producto');
     const modalBody = document.getElementById('modal-body');
+
+    if (!modal || !modalBody) return;
 
     // Crear contenido del modal
     let precioHTML = '';
@@ -389,13 +413,15 @@ function abrirModal(productoId) {
 // ========== Cerrar modal ==========
 function cerrarModal() {
     const modal = document.getElementById('modal-producto');
-    modal.classList.remove('active');
+    if (modal) modal.classList.remove('active');
 }
 
 // ========== Configurar modal de productos ==========
 function configurarModal() {
     const modal = document.getElementById('modal-producto');
     const closeBtn = document.getElementById('modal-close');
+
+    if (!modal) return;
 
     // Cerrar con botón X
     if (closeBtn) {
@@ -426,16 +452,8 @@ function comprarProducto(productoId) {
     const producto = productos.find(p => p.id === productoId);
     if (!producto || !producto.urlCompra) return;
 
-    // Mostrar mensaje de redirección
     alert('Serás redirigido a una pasarela de pago externa segura (PayPal, MercadoPago, Stripe o Gumroad).\n\nTus datos están protegidos y el proceso es 100% seguro.');
-
-    // Aquí se podría integrar seguimiento de conversión o analítica
-    // Ejemplo: gtag('event', 'purchase_intent', { product_id: productoId });
-
-    // Abrir URL de compra en nueva pestaña
     window.open(producto.urlCompra, '_blank');
-
-    // Cerrar modal si está abierto
     cerrarModal();
 }
 
@@ -444,13 +462,8 @@ function descargarGratis(productoId) {
     const producto = productos.find(p => p.id === productoId);
     if (!producto || !producto.urlDemo) return;
 
-    // Mostrar mensaje de éxito
     alert(`¡Gracias por descargar ${producto.nombre}!\n\nTu descarga comenzará en un momento.`);
-
-    // Abrir URL de descarga
     window.open(producto.urlDemo, '_blank');
-
-    // Cerrar modal si está abierto
     cerrarModal();
 }
 
@@ -459,13 +472,8 @@ function descargarDemo(productoId) {
     const producto = productos.find(p => p.id === productoId);
     if (!producto || !producto.urlDemo) return;
 
-    // Mostrar mensaje
     alert(`Descargando versión demo de ${producto.nombre}.\n\nLa versión demo tiene funcionalidades limitadas. Compra la versión Pro para acceso completo.`);
-
-    // Abrir URL de demo
     window.open(producto.urlDemo, '_blank');
-
-    // Cerrar modal si está abierto
     cerrarModal();
 }
 
@@ -474,10 +482,7 @@ function abrirGooglePlay(productoId) {
     const producto = productos.find(p => p.id === productoId);
     if (!producto || !producto.urlGooglePlay) return;
 
-    // Abrir Google Play en nueva pestaña
     window.open(producto.urlGooglePlay, '_blank');
-
-    // Cerrar modal si está abierto
     cerrarModal();
 }
 
@@ -490,10 +495,10 @@ function abrirModalBeta(productoId) {
     const productoIdInput = document.getElementById('beta-producto-id');
     const modalBody = document.getElementById('modal-beta-body');
 
-    // Guardar ID del producto
+    if (!modal || !productoIdInput || !modalBody) return;
+
     productoIdInput.value = productoId;
 
-    // Actualizar título del modal
     const titulo = modalBody.querySelector('.modal-producto-nombre');
     if (titulo) {
         titulo.textContent = `Registro Beta - ${producto.nombre}`;
@@ -505,7 +510,7 @@ function abrirModalBeta(productoId) {
 // ========== Cerrar modal beta ==========
 function cerrarModalBeta() {
     const modal = document.getElementById('modal-beta');
-    modal.classList.remove('active');
+    if (modal) modal.classList.remove('active');
 }
 
 // ========== Configurar modal beta ==========
@@ -514,7 +519,8 @@ function configurarModalBeta() {
     const closeBtn = document.getElementById('modal-beta-close');
     const form = document.getElementById('form-beta');
 
-    // Cerrar con botón X
+    if (!modal) return;
+
     if (closeBtn) {
         closeBtn.addEventListener('click', function (e) {
             e.preventDefault();
@@ -523,21 +529,18 @@ function configurarModalBeta() {
         });
     }
 
-    // Cerrar al hacer clic fuera
     modal.addEventListener('click', function (e) {
         if (e.target === modal) {
             cerrarModalBeta();
         }
     });
 
-    // Cerrar con ESC
     document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && modal.classList.contains('active')) {
             cerrarModalBeta();
         }
     });
 
-    // Enviar registro beta
     if (form) {
         form.addEventListener('submit', function (e) {
             e.preventDefault();
@@ -565,16 +568,10 @@ function configurarModalBeta() {
 
 // ========== Registrar en beta ==========
 function registrarBeta(registro) {
-    // Obtener registros guardados
     let registros = localStorage.getItem('registros-beta');
     registros = registros ? JSON.parse(registros) : [];
-
-    // Agregar nuevo registro
     registros.push(registro);
-
-    // Guardar en localStorage
     localStorage.setItem('registros-beta', JSON.stringify(registros));
-
     console.log('Registro beta guardado:', registro);
 }
 
@@ -584,7 +581,8 @@ function configurarModalContacto() {
     const closeBtn = document.getElementById('modal-contacto-close');
     const tarjetasContacto = document.querySelectorAll('.servicio-card-contacto');
 
-    // Agregar event listeners a las tarjetas de servicios
+    if (!modal) return;
+
     tarjetasContacto.forEach(tarjeta => {
         tarjeta.addEventListener('click', function () {
             const servicio = this.getAttribute('data-servicio');
@@ -592,7 +590,6 @@ function configurarModalContacto() {
         });
     });
 
-    // Cerrar con botón X
     if (closeBtn) {
         closeBtn.addEventListener('click', function (e) {
             e.preventDefault();
@@ -601,14 +598,12 @@ function configurarModalContacto() {
         });
     }
 
-    // Cerrar al hacer clic fuera
     modal.addEventListener('click', function (e) {
         if (e.target === modal) {
             cerrarModalContacto();
         }
     });
 
-    // Cerrar con ESC
     document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && modal.classList.contains('active')) {
             cerrarModalContacto();
@@ -623,15 +618,14 @@ function abrirModalContacto(servicio) {
     const btnWhatsapp = document.getElementById('btn-whatsapp');
     const btnEmail = document.getElementById('btn-email');
 
-    // Actualizar título
+    if (!modal || !titulo || !btnWhatsapp || !btnEmail) return;
+
     titulo.textContent = `Contacto - ${servicio}`;
 
-    // Generar mensaje de WhatsApp personalizado
     const mensaje = `Hola, estoy interesado en el servicio de *${servicio}*. Me gustaría obtener más información.`;
     const whatsappUrl = `https://wa.me/525513880510?text=${encodeURIComponent(mensaje)}`;
     btnWhatsapp.href = whatsappUrl;
 
-    // Actualizar subject del email
     const emailSubject = `Consulta sobre ${servicio}`;
     const emailBody = `Hola,\n\nEstoy interesado en el servicio de ${servicio}. Me gustaría obtener más información.\n\nGracias.`;
     btnEmail.href = `mailto:jesus.cisneros@outlook.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
@@ -642,7 +636,7 @@ function abrirModalContacto(servicio) {
 // ========== Cerrar modal de contacto ==========
 function cerrarModalContacto() {
     const modal = document.getElementById('modal-contacto');
-    modal.classList.remove('active');
+    if (modal) modal.classList.remove('active');
 }
 
 // ========== Configurar testimonios ==========
@@ -652,14 +646,14 @@ function configurarTestimonios() {
     const closeBtn = document.getElementById('modal-testimonio-close');
     const form = document.getElementById('form-testimonio');
 
-    // Abrir modal de testimonio
+    if (!modalTestimonio) return;
+
     if (btnAgregar) {
         btnAgregar.addEventListener('click', function () {
             modalTestimonio.classList.add('active');
         });
     }
 
-    // Cerrar modal de testimonio
     if (closeBtn) {
         closeBtn.addEventListener('click', function (e) {
             e.preventDefault();
@@ -668,21 +662,18 @@ function configurarTestimonios() {
         });
     }
 
-    // Cerrar al hacer clic fuera
     modalTestimonio.addEventListener('click', function (e) {
         if (e.target === modalTestimonio) {
             cerrarModalTestimonio();
         }
     });
 
-    // Cerrar con ESC
     document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && modalTestimonio.classList.contains('active')) {
             cerrarModalTestimonio();
         }
     });
 
-    // Enviar testimonio
     if (form) {
         form.addEventListener('submit', function (e) {
             e.preventDefault();
@@ -704,21 +695,14 @@ function configurarTestimonios() {
 // ========== Cerrar modal de testimonio ==========
 function cerrarModalTestimonio() {
     const modal = document.getElementById('modal-testimonio');
-    modal.classList.remove('active');
+    if (modal) modal.classList.remove('active');
 }
 
 // ========== Agregar testimonio ==========
 function agregarTestimonio(testimonio) {
-    // Obtener testimonios guardados
     let testimonios = obtenerTestimonios();
-
-    // Agregar nuevo testimonio
     testimonios.push(testimonio);
-
-    // Guardar en localStorage
     localStorage.setItem('testimonios', JSON.stringify(testimonios));
-
-    // Renderizar de nuevo
     renderizarTestimonios();
 }
 
@@ -736,14 +720,11 @@ function renderizarTestimonios() {
     const grid = document.querySelector('.testimonios-grid');
     if (!grid) return;
 
-    // Limpiar grid
     grid.innerHTML = '';
 
-    // Combinar testimonios predeterminados con los guardados
     const testimoniosUsuarios = obtenerTestimonios();
     const todosTestimonios = [...testimoniosPredeterminados, ...testimoniosUsuarios];
 
-    // Crear tarjetas
     todosTestimonios.forEach(testimonio => {
         const card = document.createElement('div');
         card.className = 'testimonio-card';
@@ -771,16 +752,20 @@ function configurarNavegacion() {
             e.preventDefault();
 
             const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
+            if (targetId.startsWith('#')) {
+                const targetSection = document.querySelector(targetId);
 
-            if (targetSection) {
-                const headerHeight = document.querySelector('.header').offsetHeight;
-                const targetPosition = targetSection.offsetTop - headerHeight;
+                if (targetSection) {
+                    const headerHeight = document.querySelector('.header').offsetHeight;
+                    const targetPosition = targetSection.offsetTop - headerHeight;
 
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            } else {
+                window.location.href = targetId;
             }
         });
     });
@@ -802,6 +787,23 @@ function configurarNavegacion() {
             }
         });
     }
+
+    // Smooth scrolling for category cards and CTAs
+    const smoothLinks = document.querySelectorAll('.categoria-card[href^="#"], .productos-cta a[href^="#"], .footer-quicklink[href^="#"], .link-inline[href^="#"]');
+    smoothLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetSection = document.querySelector(this.getAttribute('href'));
+            if (targetSection) {
+                const headerHeight = document.querySelector('.header').offsetHeight;
+                const targetPosition = targetSection.offsetTop - headerHeight;
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
 }
 
 // ========== Configurar FAQ ==========
@@ -810,18 +812,16 @@ function configurarFAQ() {
 
     faqItems.forEach(item => {
         const question = item.querySelector('.faq-question');
-
-        question.addEventListener('click', function () {
-            // Cerrar otros items (opcional)
-            faqItems.forEach(otherItem => {
-                if (otherItem !== item && otherItem.classList.contains('active')) {
-                    otherItem.classList.remove('active');
-                }
+        if (question) {
+            question.addEventListener('click', function () {
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                item.classList.toggle('active');
             });
-
-            // Toggle del item actual
-            item.classList.toggle('active');
-        });
+        }
     });
 }
 
@@ -838,25 +838,19 @@ function configurarFormularioContacto() {
     form.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        // Validar campos
         if (nombre.value.trim() === '' || email.value.trim() === '' || mensaje.value.trim() === '') {
             alert('Por favor, completa todos los campos.');
             return;
         }
 
-        // Validar email
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email.value)) {
             alert('Por favor, ingresa un correo electrónico válido.');
             return;
         }
 
-        // Mostrar mensaje de éxito
         form.style.display = 'none';
-        successDiv.style.display = 'block';
-
-        // Aquí se podría integrar con un backend para enviar el email
-        // Ejemplo: fetch('/api/contacto', { method: 'POST', body: JSON.stringify({ nombre, email, mensaje }) })
+        if (successDiv) successDiv.style.display = 'block';
 
         console.log('Formulario de contacto enviado:', {
             nombre: nombre.value,
@@ -869,6 +863,8 @@ function configurarFormularioContacto() {
 // ========== Efecto de scroll en header ==========
 window.addEventListener('scroll', function () {
     const header = document.querySelector('.header');
+    if (!header) return;
+
     const currentScroll = window.pageYOffset;
 
     if (currentScroll > 50) {
@@ -877,3 +873,67 @@ window.addEventListener('scroll', function () {
         header.style.boxShadow = '0 1px 2px 0 rgba(0, 0, 0, 0.05)';
     }
 });
+
+// ========== Configurar Tema (Dark Mode) ==========
+function configurarTema() {
+    const themeToggle = document.getElementById('theme-toggle');
+    if (!themeToggle) return;
+
+    const themeIcon = themeToggle.querySelector('.theme-icon');
+
+    // Verificar preferencia guardada o del sistema
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+        document.body.classList.add('dark-mode');
+        if (themeIcon) themeIcon.textContent = '☀️'; // Icono para cambiar a claro
+    } else {
+        if (themeIcon) themeIcon.textContent = '🌙'; // Icono para cambiar a oscuro
+    }
+
+    // Event listener para el botón
+    themeToggle.addEventListener('click', function () {
+        document.body.classList.toggle('dark-mode');
+
+        const isDark = document.body.classList.contains('dark-mode');
+
+        // Actualizar icono
+        if (themeIcon) themeIcon.textContent = isDark ? '☀️' : '🌙';
+
+        // Guardar preferencia
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+}
+
+// ========== Configurar Menú Móvil ==========
+function configurarMenuMobile() {
+    const toggleBtn = document.getElementById('mobile-menu-toggle');
+    const navMenu = document.getElementById('header-nav');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    if (!toggleBtn || !navMenu) return;
+
+    // Toggle menú al hacer clic en el botón
+    toggleBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        toggleBtn.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+
+    // Cerrar menú al hacer clic en un enlace
+    navLinks.forEach(link => {
+        link.addEventListener('click', function () {
+            toggleBtn.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
+
+    // Cerrar menú al hacer clic fuera
+    document.addEventListener('click', function (e) {
+        if (navMenu.classList.contains('active') && !navMenu.contains(e.target) && e.target !== toggleBtn && !toggleBtn.contains(e.target)) {
+            toggleBtn.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+    });
+}
