@@ -8,7 +8,48 @@
 
 // ========== Datos de productos ==========
 const productos = [
-
+    {
+        id: 'pdf-obfuscator',
+        nombre: 'JACC PDF Obfuscator',
+        descripcion: 'Ofusca datos sensibles en documentos PDF de forma sencilla y segura. Protege información confidencial antes de compartir tus documentos.',
+        categoria: 'Escritorio',
+        precio: 399,
+        moneda: 'MXN',
+        esGratis: false,
+        tieneDemo: true,
+        urlCompra: 'https://paypal.com/checkout/jacc-pdf-obfuscator',
+        urlDemo: 'https://jacc-software.com/descargas/pdf-obfuscator-demo.zip',
+        videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+        estado: 'Pro'
+    },
+    {
+        id: 'backup',
+        nombre: 'JACC Backup',
+        descripcion: 'Programa para hacer respaldos automáticos de tus archivos importantes. Configura una vez y olvídate de perder información.',
+        categoria: 'Utilidad',
+        precio: 299,
+        moneda: 'MXN',
+        esGratis: false,
+        tieneDemo: true,
+        urlCompra: 'https://gumroad.com/l/jacc-backup',
+        urlDemo: 'https://jacc-software.com/descargas/backup-demo.zip',
+        videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+        estado: 'Pro'
+    },
+    {
+        id: 'inventory',
+        nombre: 'JACC Inventory',
+        descripcion: 'Sistema sencillo de inventario para pequeños negocios. Controla tu stock, ventas y proveedores desde una interfaz intuitiva.',
+        categoria: 'Web',
+        precio: 499,
+        moneda: 'MXN',
+        esGratis: false,
+        tieneDemo: true,
+        urlCompra: 'https://mercadopago.com/checkout/jacc-inventory',
+        urlDemo: 'https://demo.jacc-software.com/inventory',
+        videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+        estado: 'Pro'
+    },
     {
         id: 'notes',
         nombre: 'JACC Notes',
@@ -21,9 +62,83 @@ const productos = [
         urlCompra: null,
         urlDemo: null,
         urlGooglePlay: 'https://play.google.com/store/apps/details?id=cisneros.nota',
-        videoUrl: 'https://www.youtube.com/embed/OWRAga0Hu14',
+        videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
         estado: 'Gratis',
         esBeta: false
+    },
+    {
+        id: 'image-optimizer',
+        nombre: 'JACC Image Optimizer',
+        descripcion: 'Optimiza y comprime imágenes sin perder calidad. Procesa múltiples archivos en lote y ahorra espacio en disco.',
+        categoria: 'Escritorio',
+        precio: 0,
+        moneda: 'MXN',
+        esGratis: true,
+        tieneDemo: false,
+        urlCompra: null,
+        urlDemo: 'https://jacc-software.com/descargas/image-optimizer.zip',
+        videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+        estado: 'Gratis'
+    },
+    {
+        id: 'code-snippets',
+        nombre: 'JACC Code Snippets',
+        descripcion: 'Gestor de fragmentos de código para desarrolladores. Guarda, organiza y comparte tus snippets favoritos con resaltado de sintaxis.',
+        categoria: 'Escritorio',
+        precio: 249,
+        moneda: 'MXN',
+        esGratis: false,
+        tieneDemo: true,
+        urlCompra: 'https://gumroad.com/l/jacc-code-snippets',
+        urlDemo: 'https://jacc-software.com/descargas/code-snippets-demo.zip',
+        videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+        estado: 'Nuevo'
+    },
+    {
+        id: 'task-manager',
+        nombre: 'JACC Task Manager',
+        descripcion: 'Administrador de tareas con metodología Kanban. Visualiza tu flujo de trabajo y aumenta tu productividad personal o en equipo.',
+        categoria: 'Web',
+        precio: 349,
+        moneda: 'MXN',
+        esGratis: false,
+        tieneDemo: true,
+        urlCompra: 'https://stripe.com/checkout/jacc-task-manager',
+        urlDemo: 'https://demo.jacc-software.com/task-manager',
+        videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+        estado: 'Pro'
+    },
+    {
+        id: 'task-app',
+        nombre: 'JACC Task App',
+        descripcion: 'Aplicación Android para gestión de tareas con recordatorios inteligentes. Próximamente disponible en Google Play.',
+        categoria: 'Android',
+        precio: 0,
+        moneda: 'MXN',
+        esGratis: true,
+        tieneDemo: false,
+        urlCompra: null,
+        urlDemo: null,
+        urlGooglePlay: null,
+        videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+        estado: 'Próximamente',
+        esBeta: true
+    },
+    {
+        id: 'expense-tracker',
+        nombre: 'JACC Expense Tracker',
+        descripcion: 'Controla tus gastos personales y genera reportes detallados. Versión beta disponible próximamente.',
+        categoria: 'Android',
+        precio: 0,
+        moneda: 'MXN',
+        esGratis: true,
+        tieneDemo: false,
+        urlCompra: null,
+        urlDemo: null,
+        urlGooglePlay: null,
+        videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+        estado: 'Próximamente',
+        esBeta: true
     }
 ];
 
